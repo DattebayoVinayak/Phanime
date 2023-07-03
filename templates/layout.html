@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="{{url_for('static',filename='./css/global.css')}}"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
+      rel="stylesheet"
+    />
+    {% block styles %}{% endblock %}
+  </head>
+
+  <body>
+    <ul class="nav-links menu">
+      <li><a class="close-menu">Close</a></li>
+      <li><a href="/">Home</a></li>
+      <li>
+        <a class="menuLink">Categories</a>
+        <ul class="submenu">
+          <li><a href="/search?type=tv">TV</a></li>
+          <li><a href="/search?type=tv-short">TV_SHORT</a></li>
+          <li><a href="/search?type=ova">OVA</a></li>
+          <li><a href="/search?type=ona">ONA</a></li>
+          <li><a href="/search?type=movie">MOVIE</a></li>
+          <li><a href="/search?type=special">SPECIAL</a></li>
+          <li><a href="/search?type=music">MUSIC</a></li>
+        </ul>
+      </li>
+      <li>
+        <a class="menuLink">Genre</a>
+        <ul class="submenu">
+          <li><a href="/search?type=action">Action</a></li>
+          <li><a href="/search?type=adventure">Adventure</a></li>
+          <li><a href="/search?type=cars">Cars</a></li>
+          <li><a href="/search?type=comedy">Comedy</a></li>
+          <li><a href="/search?type=drama">Drama</a></li>
+          <li><a href="/search?type=fantasy">Fantasy</a></li>
+          <li><a href="/search?type=horror">Horror</a></li>
+          <li><a href="/search?type=mahou-shoujo">Mahou Shoujo</a></li>
+          <li><a href="/search?type=mecha">Mecha</a></li>
+          <li><a href="/search?type=music">Music</a></li>
+          <li><a href="/search?type=mystery">Mystery</a></li>
+          <li><a href="/search?type=psychological">Psychological</a></li>
+          <li><a href="/search?type=romance">Romance</a></li>
+          <li><a href="/search?type=sci-fi">Sci-Fi</a></li>
+          <li><a href="/search?type=slice-of-life">Slice of Life</a></li>
+          <li><a href="/search?type=sports">Sports</a></li>
+          <li><a href="/search?type=supernatural">Supernatural</a></li>
+          <li><a href="/search?type=thriller">Thriller</a></li>
+        </ul>
+      </li>
+      <li><a href="/search">Search</a></li>
+    </ul>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="/" class="logo"
+          >Ph<span style="color: var(--secondary-color)">Anime</span></a
+        >
+        <ul class="nav-links">
+          <li><a href="/">Home</a></li>
+          <li>
+            <a class="menuLink">Categories</a>
+            <ul class="submenu">
+              <li><a href="/search?type=tv">TV</a></li>
+              <li><a href="/search?type=tv-short">TV_SHORT</a></li>
+              <li><a href="/search?type=ova">OVA</a></li>
+              <li><a href="/search?type=ona">ONA</a></li>
+              <li><a href="/search?type=movie">MOVIE</a></li>
+              <li><a href="/search?type=special">SPECIAL</a></li>
+              <li><a href="/search?type=music">MUSIC</a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="menuLink">Genre</a>
+            <ul class="submenu">
+              <li><a href="/search?type=action">Action</a></li>
+              <li><a href="/search?type=adventure">Adventure</a></li>
+              <li><a href="/search?type=cars">Cars</a></li>
+              <li><a href="/search?type=comedy">Comedy</a></li>
+              <li><a href="/search?type=drama">Drama</a></li>
+              <li><a href="/search?type=fantasy">Fantasy</a></li>
+              <li><a href="/search?type=horror">Horror</a></li>
+              <li><a href="/search?type=mahou-shoujo">Mahou Shoujo</a></li>
+              <li><a href="/search?type=mecha">Mecha</a></li>
+              <li><a href="/search?type=music">Music</a></li>
+              <li><a href="/search?type=mystery">Mystery</a></li>
+              <li><a href="/search?type=psychological">Psychological</a></li>
+              <li><a href="/search?type=romance">Romance</a></li>
+              <li><a href="/search?type=sci-fi">Sci-Fi</a></li>
+              <li><a href="/search?type=slice-of-life">Slice of Life</a></li>
+              <li><a href="/search?type=sports">Sports</a></li>
+              <li><a href="/search?type=supernatural">Supernatural</a></li>
+              <li><a href="/search?type=thriller">Thriller</a></li>
+            </ul>
+          </li>
+          <li><a href="/search">Search</a></li>
+        </ul>
+        <a class="menu-btn">
+          <svg
+            fill="currentColor"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M4 6H20M4 12H20M4 18H20"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </a>
+      </div>
+    </nav>
+
+    <div class="container">{% block content %}{% endblock %}</div>
+
+    <footer>
+      <a href="/" class="logo"
+        >Ph<span style="color: var(--secondary-color)">Anime</span></a
+      >
+      <div class="footer-links">
+        <ul class="column">
+          <li><a href="/">Home</a></li>
+          <li><a href="/">Trending</a></li>
+          <li><a href="/">Populer</a></li>
+          <li><a href="/">New Release</a></li>
+        </ul>
+        <ul class="column">
+          <li><a href="/">Categories</a></li>
+          <li><a href="/">Anime</a></li>
+          <li><a href="/">Manga</a></li>
+          <li><a href="/">Movies</a></li>
+          <li><a href="/">OVA</a></li>
+        </ul>
+        <ul class="column">
+          <li><a href="/">Genre</a></li>
+          <li><a href="/">Adventure</a></li>
+          <li><a href="/">Bizzare</a></li>
+          <li><a href="/">Cars</a></li>
+        </ul>
+        <ul class="column">
+          <li><a href="/search">Search</a></li>
+        </ul>
+      </div>
+    </footer>
+
+    {% block scripts %}{% endblock %}
+    <script src="{{url_for('static',filename='./js/globals.js')}}"></script>
+  </body>
+</html>

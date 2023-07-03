@@ -1,0 +1,168 @@
+{% extends './layout.html' %}
+
+{% block title %}
+Home || Phanime
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{url_for('static',filename='./css/home.css')}}">
+{% endblock %}
+
+{% block content %}
+<div class="carousel">
+  <div class="slides">
+    {% for anime in sliders %}
+    {%  set link = "/watch/"+ anime.get('id') %}
+    <div class="slide" onclick="window.location = '/watch/{{link}}'">
+      <img src="{{ anime.get('cover') }}" alt="">
+      <div class="info">
+        <h1>{{ anime.get('title').get('english') }}</h1>
+        <div class="genres">
+          {% for genre in anime.get('genres') %}
+          <div class="genre">{{genre}}</div>
+          {% endfor %}
+        </div>
+        <h2>{{anime.get('status')}}</h2>
+        <h2 class="time">{{anime.get('totalEpisodes')}} ep</h2>
+        <h2 class="time">{{anime.get('duration')}} mins</h2>
+        <h2>{{anime.get("rating")/10}} &#11088;</h2>
+      </div>
+    </div>
+
+    {% endfor %}
+  </div>
+  <div class="indicators"></div>
+</div>
+
+<section class="section">
+    <h2 class="section-title">Trending Anime</h2>
+    <div class="anime-list">
+      
+      
+      {% for anime in trending %}
+
+      <div class="anime-item">
+        <a href="/anime/watch/{{ anime.get('id') }}">
+          <img src="{{ anime.get('image') }}" >
+          <div class="anime-title">{%set titles = anime.get('title')%}
+            {% if str(titles.get("english")) != "None" %}
+            {{titles.get("english")}}
+            {% else %}
+            {{titles.get("userPreferred")}}
+            {%endif%}</div>
+          <ul class="info">
+            {% if str(anime.get('totalEpisodes'))!='None' %}
+            <li class="status">{{anime.get('totalEpisodes')}} ep</li>
+            {% endif %}
+            {% if str(anime.get('duration'))!='None' %}
+            <li class="status">{{anime.get('duration')}} mins</li>
+            {% endif %}
+            {% if str(anime.get('type'))!= 'None' %}
+            <li class="status">{{anime.get('type')}}</li>
+            {% endif %}
+            {% if str(anime.get("rating"))!="None" %}
+            <li style="background-color: var(--secondary-color)" class="status">{{anime.get('rating')/10}} &#11088;</li>
+            {% endif %}
+            <li class="anime-title"></li>
+          </ul>
+          <div class="status">
+            {{ anime.get('status') }}
+          </div>
+        </a>
+      </div>
+
+      {% endfor %}
+    </div>
+</section>
+
+<section class="section">
+  <h2 class="section-title">Popular Anime</h2>
+  <div class="anime-list">
+    
+    
+    {% for anime in popular %}
+
+    <div class="anime-item">
+      <a href="/anime/watch/{{ anime.get('id') }}">
+        <img src="{{ anime.get('image') }}" >
+        <div class="anime-title">
+          {%set titles = anime.get('title')%}
+          {% if str(titles.get("english")) != "None" %}
+          {{titles.get("english")}}
+          {% else %}
+          {{titles.get("userPreferred")}}
+          {%endif%}
+        </div>
+        <ul class="info">
+          {% if str(anime.get('totalEpisodes'))!='None' %}
+          <li class="status">{{anime.get('totalEpisodes')}} ep</li>
+          {% endif %}
+          {% set duration = anime.get('duration') %}
+          {% if str(duration)!='None' %}
+          <li class="status">{% if duration<60 %}{{duration}} mins{% else %}{{duration//60}} hr {{(duration%60)}} min{%endif%}</li>
+          {% endif %}
+          {% if str(anime.get('type'))!= 'None' %}
+          <li class="status">{{anime.get('type')}}</li>
+          {% endif %}
+          {% if str(anime.get("rating"))!="None" %}
+            <li style="background-color: var(--secondary-color)" class="status">{{anime.get('rating')/10}} &#11088;</li>
+            {% endif %}
+          <li class="anime-title"></li>
+        </ul>
+        <div class="status">
+          {{ anime.get('status') }}
+        </div>
+      </a>
+    </div>
+
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section">
+  <h2 class="section-title">Latest Release</h2>
+  <div class="anime-list">
+    
+    
+    {% for anime in latest %}
+
+    <div class="anime-item">
+      <a href="/anime/watch/{{ anime.get('id') }}">
+        <img src="{{ anime.get('image') }}" >
+        <div class="anime-title">
+          {%set titles = anime.get('title')%}
+          {% if str(titles.get("english")) != "None" %}
+          {{titles.get("english")}}
+          {% else %}
+          {{titles.get("userPreferred")}}
+          {%endif%}
+        </div>
+        <ul class="info">
+          {% if str(anime.get('episodeNumber'))!='None' %}
+          <li class="status">
+            ep {{anime.get('episodeNumber')}}{{anime.get('episodeNumber')}}</li>
+          {% endif %}
+          {% set duration = anime.get('duration') %}
+          {% if str(duration)!='None' %}
+          <li class="status">{% if duration<60 %}{{duration}} mins{% else %}{{duration//60}} hr {{(duration%60)}} min{%endif%}</li>
+          {% endif %}
+          {% if str(anime.get("rating"))!="None" %}
+            <li style="background-color: var(--secondary-color)" class="status">{{anime.get('rating')/10}} &#11088;</li>
+            {% endif %}
+        </ul>
+        {% if str(anime.get('type'))!= 'None' %}
+          <div class="status">{{anime.get('type')}}</div>
+          {% endif %}
+      </a>
+    </div>
+
+    {% endfor %}
+  </div>
+</section>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{url_for('static',filename='./js/carousel.js')}}"></script>
+{% endblock %}

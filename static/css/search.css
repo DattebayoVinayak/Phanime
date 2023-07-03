@@ -1,0 +1,138 @@
+/* section styles */
+.section {
+  margin-top: 20px;
+}
+
+.section-title {
+  font-size: 30px;
+  font-weight: bold;
+  color: var(--accent-color);
+  margin-bottom: 10px;
+  font-family: 'Oswald', sans-serif;
+  position: relative;
+  top: 0;
+  right: -30px;
+}
+
+.top-section{
+  width: 100%;
+  color: var(--accent-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.section-title::before{
+  content: "";
+  height: 100%;
+  aspect-ratio: 4/15;
+  background: var(--secondary-color);
+  position: absolute;
+  left: -30px;
+  border-radius: 2px;
+  display: flex;
+}
+
+.anime-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.anime-item {
+  text-align: center;
+  position: relative;
+}
+
+.anime-item img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 5px;
+}
+
+.anime-item .status{
+  position: absolute;
+  box-shadow: 0 0 0.8em rgb(29, 28, 28);
+  top: 2px;
+  right: 2px;
+  color: var(--accent-color);
+  font-size: 0.8em;
+  padding: 0.4em;
+  font-weight: 600;
+  border-radius: 4px;
+  background: var(--secondary-color);
+}
+
+.anime-title {
+  margin-top: 5px;
+  font-weight: 500;
+  color: var(--accent-color);
+}
+
+.anime-item .info{
+  position: absolute;
+  left: 2px;
+  top: 2px;
+}
+
+.anime-item .info li{
+  position: static;
+  margin: 3px;
+  background: #444444;
+}
+.genre .status{
+  position: static;
+  margin: 3px;
+  background: #444444;
+}
+
+
+.pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.pagination a {
+  display: inline-block;
+  background-color: var(--background-color);
+  color: var(--accent-color);
+  padding: 6px 12px;
+  margin-right: 5px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.pagination a:hover {
+  background-color: var(--accent-color);
+  color: var(--background-color);
+}
+
+.pagination .index {
+  background-color: var(--accent-color);
+  color: var(--background-color);
+}
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .anime-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .anime-list {
+    grid-template-columns: repeat(2,1fr);
+  }
+  .time{
+    position: absolute;
+    top: 3px;
+    right: 3px;
+  }
+  .info h1{
+    font-size: 100%;
+  }
+}
+
+
+

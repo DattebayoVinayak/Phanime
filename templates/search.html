@@ -1,0 +1,71 @@
+{% extends './layout.html' %}
+
+{% block title %}
+Search || Phanime
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{url_for('static',filename='/css/search.css')}}">
+{% endblock %}
+
+{% block content %}
+
+<section class="section">
+  <div class="top-section">
+    <h2 class="section-title">Search Results for '{{ searches.get("query") }}'</h2>
+    <h2 class="">Sort By:</h2>
+  </div>
+  <div class="anime-list">
+    
+    
+    {% for anime in searches.get("results") %}
+
+    <div class="anime-item">
+      <a href="/anime/watch/{{ anime.get('id') }}">
+        <img src="{{ anime.get('image') }}" >
+        <div class="anime-title">
+          {%set titles = anime.get('title')%}
+          {% if str(titles.get("english")) != "None" %}
+          {{titles.get("english")}}
+          {% else %}
+          {{titles.get("userPreferred")}}
+          {%endif%}
+        </div>
+        <ul class="info">
+          {% if str(anime.get('totalEpisodes'))!='None' %}
+          <li class="status">{{anime.get('totalEpisodes')}} ep</li>
+          {% endif %}
+          {% set duration = anime.get('duration') %}
+          {% if str(duration)!='None' %}
+          <li class="status">{% if duration<60 %}{{duration}} mins{% else %}{{duration//60}} hr {{(duration%60)}} min{%endif%}</li>
+          {% endif %}
+          {% if str(anime.get('type'))!= 'None' %}
+          <li class="status">{{anime.get('type')}}</li>
+          {% endif %}
+          {% if str(anime.get("rating"))!="None" %}
+            <li style="background-color: var(--secondary-color)" class="status">{{anime.get('rating')/10}} &#11088;</li>
+            {% endif %}
+          <li class="anime-title"></li>
+        </ul>
+        <div class="status">
+          {{ anime.get('status') }}
+        </div>
+      </a>
+    </div>
+
+    {% endfor %}
+  </div>
+
+</section>
+<div class="pagination">
+  {% if searches.get("currentPage")!=1 %}<a onclick="prevPage()"><</a>{% endif %}
+  <a class="index">{{searches.get("currentPage")}}</a>
+  {% if boolean(searches.get("hasNextPage")) %}<a onclick="nextPage()">></a>{% endif %}
+</div>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{url_for('static',filename='js/search.js')}}"></script>
+{% endblock %}
